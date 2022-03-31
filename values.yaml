@@ -1,4 +1,4 @@
-# Default values for plausible-analytics.
+# Default values for plausible-analytics
 
 
 # Plausible specific values
@@ -139,6 +139,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-
-
