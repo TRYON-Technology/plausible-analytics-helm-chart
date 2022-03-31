@@ -10,4 +10,4 @@ stages:
   - dummy
 
 variables:
-  CHART_NAME: plausibe-analytics
+  CHART_NAME: plausible-analytics
