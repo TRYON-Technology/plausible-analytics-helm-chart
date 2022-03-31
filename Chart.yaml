@@ -23,7 +23,9 @@ dependencies:
   - name: clickhouse
     version: 3.1.1
     repository: https://sentry-kubernetes.github.io/charts
+    condition: clickhouse.enabled
   # https://artifacthub.io/packages/helm/bitnami/postgresql
   - name: postgresql
     version: 11.1.12
     repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled

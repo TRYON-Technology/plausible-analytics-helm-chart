@@ -29,7 +29,7 @@ releases:
           email: analytics@8gears.com
           name: admin
           password: "{{ .Values.admin_password }}"
-      - database:
+      - postgresql:
           url: "postgress://postgres:{{ .Values.db_password }}@postgres-postgresql:5432/plausible"
       - clickhouse:
           url: "http://clickhouse:8123/plausible_events_db"

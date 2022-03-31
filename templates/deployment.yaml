@@ -145,12 +145,12 @@ spec:
                   key: GOOGLE_CLIENT_SECRET
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
-            {{- if .Values.database.enabled }}
-            {{- if .Values.database.url }}
-            - name: DATABASE_URL
+            {{- if .Values.postgresql.enabled }}
+            {{- if .Values.postgresql.url }}
+            - name: postgresql.url
               valueFrom:
                 secretKeyRef:
-                  key: DATABASE_URL
+                  key: postgresql.url
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -161,10 +161,10 @@ spec:
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- if .Values.clickhouse.enabled }}
             {{- if .Values.clickhouse.url }}
-            - name: CLICKHOUSE_DATABASE_URL
+            - name: CLICKHOUSE_postgresql.url
               valueFrom:
                 secretKeyRef:
-                  key: CLICKHOUSE_DATABASE_URL
+                  key: CLICKHOUSE_postgresql.url
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -267,12 +267,12 @@ spec:
                   key: ADMIN_USER_PWD
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
-            {{- if .Values.database.enabled }}
-            {{- if .Values.database.url }}
-            - name: DATABASE_URL
+            {{- if .Values.postgresql.enabled }}
+            {{- if .Values.postgresql.url }}
+            - name: postgresql.url
               valueFrom:
                 secretKeyRef:
-                  key: DATABASE_URL
+                  key: postgresql.url
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -283,10 +283,10 @@ spec:
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- if .Values.clickhouse.enabled }}
             {{- if .Values.clickhouse.url }}
-            - name: CLICKHOUSE_DATABASE_URL
+            - name: CLICKHOUSE_postgresql.url
               valueFrom:
                 secretKeyRef:
-                  key: CLICKHOUSE_DATABASE_URL
+                  key: CLICKHOUSE_postgresql.url
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}

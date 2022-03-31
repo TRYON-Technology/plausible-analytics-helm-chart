@@ -1,40 +1,23 @@
 # Plausible Analytics Helm Chart for Kubernetes
- 
+
 [Plausible Analytics][] is a Simple, lightweight privacy-friendly website analytics  alternative to Google Analytics.
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/open-8gears)](https://artifacthub.io/packages/search?repo=open-8gears)
-
- 
 
 ## Install Chart
 
 ```shell script
 helm repo add 8gears https://8gears.container-registry.com/chartrepo/library
 helm repo update
-
-# Helm 3
-$ helm install [RELEASE_NAME] 8gears/plausible-analytics
+helm install [RELEASE_NAME] 8gears/plausible-analytics
 ```
- 
-Source Code for this Helm Chart is located at: [8gears/plausible-analytics-helm-chart](https://github.com/8gears/plausible-analytics-helm-chart)
- 
 
-View Chart in 8gears Chart Museum: [8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0](https://8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0)
-
-
-## Requirements
-
-Before you start make sure you have the following dependencies ready and working: 
-
-- Helm > 3
-- Postgres DB
-- ClickHouse (Recommended Helm Chart -> [liwenhe1993/charts][])
-- Helmfile (Optional)
+Source Code for this Helm Chart is located at: <https://0xacab.org/varac/plausible-analytics-helm-chart>
 
 ## Configuration
 
 Plausible specific values.
-The shown values represent defaults and comments provide a better description if needed. 
+The shown values represent defaults and comments provide a better description if needed.
 
 ```yaml
 
@@ -51,7 +34,7 @@ adminUser:
 
 # SECRET_KEY_BASE is Helm randAlphaNum 90
 
-database: # Postgres Database
+postgresql: # Postgres Database
   enabled: true
   url: # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 
@@ -100,7 +83,7 @@ geolocation: # MaxMind geolocation database#
 
 ```
 
-This Part of the represents the common Kubernetes specific settings. 
+This Part of the represents the common Kubernetes specific settings.
 
 ```yaml
 replicaCount: 1
@@ -185,7 +168,7 @@ This repository also contains a complete example using Helmfile.
 
 ### Helmfile Content
 
-- Postgres 
+- Postgres
 - Clickhouse
 - Plausible
 
@@ -195,21 +178,16 @@ helmfile apply
 
 ```
 
-See [helmfile.yaml](https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml) 
-
-
+See [helmfile.yaml](https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml)
 
 ## Chart Deployment
 
-
 ```shell script
 
-helm repo add  --username='robot$xxxx' --password="xxx" 8gears https://8gears.container-registry.com/chartrepo/library 
+helm repo add  --username='robot$xxxx' --password="xxx" 8gears https://8gears.container-registry.com/chartrepo/library
 helm push --username='robot$helmcli' --password="$PASSWD" . 8gears
 
 ```
-
-
 
 [Plausible Analytics]: https://github.com/plausible/analytics
 [liwenhe1993/charts]: https://github.com/liwenhe1993/charts

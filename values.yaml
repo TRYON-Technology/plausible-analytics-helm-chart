@@ -14,13 +14,13 @@ adminUser:
 
 # SECRET_KEY_BASE is Helm randAlphaNum 90
 
-database: # Postgres Database
+postgresql: # Postgres Database
   enabled: true
-  url: # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+  # url: # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 
 clickhouse: # Clickhouse Database
   enabled: true
-  url: # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
+  # url: # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
 
 smtp: # Plausible uses and SMTP server to send transactional emails e.g. account activation, password reset, weekly reports, etc.
   enabled: false # Enable/Disable SMTP functionality
@@ -70,7 +70,7 @@ image:
   repository: plausible/analytics
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  # tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
