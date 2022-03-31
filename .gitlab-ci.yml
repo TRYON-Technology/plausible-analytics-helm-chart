@@ -1,0 +1,13 @@
+include:
+  - remote: https://open.greenhost.net/stackspin/stackspin/-/raw/main/.gitlab/ci_templates/helm_package.yml
+  - remote: https://open.greenhost.net/stackspin/stackspin/-/raw/main/.gitlab/ci_templates/dummy_job.yml
+  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
+
+stages:
+  - lint-helm-chart
+  - package-helm-chart
+  - release-helm-chart
+  - dummy
+
+variables:
+  CHART_NAME: plausibe-analytics

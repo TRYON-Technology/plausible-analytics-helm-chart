@@ -98,4 +98,3 @@ releases:
           enabled: false
       - persistence:
           enabled: false
-
