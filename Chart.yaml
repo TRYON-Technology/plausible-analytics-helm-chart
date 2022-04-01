@@ -2,8 +2,6 @@ apiVersion: v2
 name: plausible-analytics
 description: A Helm Chart for Plausible Analytics - a simple and privacy-friendly alternative to Google Analytics
 type: application
-version: 0.3.1
-appVersion: v1.4.4
 home: https://plausible.io/
 icon: https://docs.plausible.io/img/logo.svg
 keywords:
@@ -18,6 +16,8 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
+version: 0.3.2
+appVersion: v1.4.4
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
   - name: clickhouse
@@ -29,3 +29,19 @@ dependencies:
     version: 11.1.12
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
+# https://artifacthub.io/docs/topics/annotations/helm/#supported-annotations
+annotations:
+  # artifacthub.io/containsSecurityUpdates: "true"
+  # artifacthub.io/images: |
+  #   - name:
+  #     image: repo/img1:1.0.0
+  artifacthub.io/license: Apache-2.0
+  # artifacthub.io/signKey: |
+  #   fingerprint: C874...
+  #   url: https://keybase.io/hashicorp/pgp_keys.asc
+
+  # https://blog.artifacthub.io/blog/changelogs/
+  # valid supported kinds are added, changed, deprecated, removed, fixed and security
+  artifacthub.io/changes: |
+    - kind: added
+      description: Update clickhouse image tag 21.3.2.5 to make plausible work
