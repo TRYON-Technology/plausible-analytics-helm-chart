@@ -147,10 +147,10 @@ spec:
             {{- end }}
             {{- if .Values.postgresql.enabled }}
             {{- if .Values.postgresql.url }}
-            - name: postgresql.url
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  key: postgresql.url
+                  key: DATABASE_URL
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -161,10 +161,10 @@ spec:
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- if .Values.clickhouse.enabled }}
             {{- if .Values.clickhouse.url }}
-            - name: CLICKHOUSE_postgresql.url
+            - name: CLICKHOUSE_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  key: CLICKHOUSE_postgresql.url
+                  key: CLICKHOUSE_DATABASE_URL
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -269,10 +269,10 @@ spec:
             {{- end }}
             {{- if .Values.postgresql.enabled }}
             {{- if .Values.postgresql.url }}
-            - name: postgresql.url
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  key: postgresql.url
+                  key: DATABASE_URL
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
@@ -283,10 +283,10 @@ spec:
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- if .Values.clickhouse.enabled }}
             {{- if .Values.clickhouse.url }}
-            - name: CLICKHOUSE_postgresql.url
+            - name: CLICKHOUSE_DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  key: CLICKHOUSE_postgresql.url
+                  key: CLICKHOUSE_DATABASE_URL
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
