@@ -16,11 +16,23 @@ adminUser:
 
 postgresql: # Postgres Database
   enabled: true
-  # url: # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+  # Sub-chart values, see https://artifacthub.io/packages/helm/bitnami/postgresql
+  # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+  # Replace POSTGRES_PW with the auth.postgresPassword below !
+  # url: "postgress://postgres:POSTGRES_PW@plausible-postgresql:5432/plausible"
+  auth:
+    postgresPassword:
 
 clickhouse: # Clickhouse Database
   enabled: true
-  # url: # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
+  # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
+  url: "http://plausible-clickhouse:8123/plausible_events_db"
+  # Sub-chart values, see https://artifacthub.io/packages/helm/sentry/clickhouse
+  clickhouse:
+    replicas: 1
+    # Latest sentry/clickhouse chart ships 19.14, which doesn't work together
+    # with latest plausible
+    imageVersion: "21.3.2.5"
 
 smtp: # Plausible uses and SMTP server to send transactional emails e.g. account activation, password reset, weekly reports, etc.
   enabled: false # Enable/Disable SMTP functionality
@@ -70,6 +82,7 @@ image:
   repository: plausible/analytics
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
+  # See https://hub.docker.com/r/plausible/analytics for tags
   # tag: ""
 
 imagePullSecrets: []
