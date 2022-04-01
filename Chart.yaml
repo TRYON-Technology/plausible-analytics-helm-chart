@@ -16,7 +16,7 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
-version: 0.3.4
+version: 0.3.5
 appVersion: v1.4.4
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
@@ -44,4 +44,4 @@ annotations:
   # valid supported kinds are added, changed, deprecated, removed, fixed and security
   artifacthub.io/changes: |
     - kind: added
-      description: Add startupProbe for slow starting plausible container
+      description: Verify publisher, update README.md

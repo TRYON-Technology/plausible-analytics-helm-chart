@@ -2,14 +2,14 @@
 
 [Plausible Analytics][] is a Simple, lightweight privacy-friendly website analytics  alternative to Google Analytics.
 
-[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/open-8gears)](https://artifacthub.io/packages/search?repo=open-8gears)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/plausible-analytics)](https://artifacthub.io/packages/search?repo=plausible-analytics)
 
 ## Install Chart
 
 ```shell script
-helm repo add 8gears https://8gears.container-registry.com/chartrepo/library
-helm repo update
-helm install [RELEASE_NAME] 8gears/plausible-analytics
+helm repo add varac-plausible https://0xacab.org/api/v4/projects/3963/packages/helm/stable
+helm repo update varac-plausible
+helm install [RELEASE_NAME] varac-plausible/plausible-analytics
 ```
 
 Source Code for this Helm Chart is located at: <https://0xacab.org/varac/plausible-analytics-helm-chart>
@@ -20,7 +20,6 @@ Plausible specific values.
 The shown values represent defaults and comments provide a better description if needed.
 
 ```yaml
-
 # Plausible specific values
 
 disableAuth: false # Disables authentication completely, no registration, login will be shown.
@@ -36,16 +35,28 @@ adminUser:
 
 postgresql: # Postgres Database
   enabled: true
-  url: # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+  # Sub-chart values, see https://artifacthub.io/packages/helm/bitnami/postgresql
+  # The URL to the Postgres Database Connection String see -> https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+  # Replace POSTGRES_PW with the auth.postgresPassword below !
+  # url: "postgress://postgres:POSTGRES_PW@plausible-postgresql:5432/plausible"
+  auth:
+    postgresPassword:
 
 clickhouse: # Clickhouse Database
   enabled: true
-  url: # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
+  # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
+  url: "http://plausible-clickhouse:8123/plausible_events_db"
+  # Sub-chart values, see https://artifacthub.io/packages/helm/sentry/clickhouse
+  clickhouse:
+    replicas: 1
+    # Latest sentry/clickhouse chart ships 19.14, which doesn't work together
+    # with latest plausible
+    imageVersion: "21.3.2.5"
 
 smtp: # Plausible uses and SMTP server to send transactional emails e.g. account activation, password reset, weekly reports, etc.
-  enabled: true # Enable/Disable SMTP functionality
+  enabled: false # Enable/Disable SMTP functionality
   mailer:
-    emailAddress:
+    emailAddress: # the email address of the email sender
     adapter:
   host: # The host address of your smtp server.
   port: # The port of your smtp server.
@@ -57,6 +68,12 @@ smtp: # Plausible uses and SMTP server to send transactional emails e.g. account
 
 postmark: #Alternatively, you can use Postmark to send transactional emails. In this case, use the following parameters:
   apiKey:
+
+geolocation: # MaxMind geolocation database#
+  enabled: false # Enable/Disable the automated fetch of
+  account_id: # Account/User ID from maxmind.com
+  license_key: # My License Key from maxmind.com
+  # geoliteCountryDB: # Override default geoip db location (/geoip/GeoLite2-City.mmdb)
 
 # Google Search Integration
 # See: https://docs.plausible.io/self-hosting-configuration#google-search-integration
@@ -76,22 +93,17 @@ twitter:
 labels: {} # Extra Labels to apply on your k8s deployment
 extraEnv: [] # Extra Env Variables that are passed down to plausible 1:1
 
-geolocation: # MaxMind geolocation database#
-  enabled: false # Enable/Disable the automated fetch of
-  account_id: # Account/User ID from maxmind.com
-  license_key: # My License Key from maxmind.com
+# Standard helm chart values
+# This Part of the represents the common Kubernetes specific settings
 
-```
-
-This Part of the represents the common Kubernetes specific settings.
-
-```yaml
 replicaCount: 1
 
 image:
   repository: plausible/analytics
   pullPolicy: IfNotPresent
-  tag: # Overrides the image tag whose. default: is the chart appVersion.
+  # Overrides the image tag whose default is the chart appVersion.
+  # See https://hub.docker.com/r/plausible/analytics for tags
+  # tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -161,33 +173,3 @@ tolerations: []
 
 affinity: {}
 ```
-
-## Helmfile Example
-
-This repository also contains a complete example using Helmfile.
-
-### Helmfile Content
-
-- Postgres
-- Clickhouse
-- Plausible
-
-```shell script
-
-helmfile apply
-
-```
-
-See [helmfile.yaml](https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml)
-
-## Chart Deployment
-
-```shell script
-
-helm repo add  --username='robot$xxxx' --password="xxx" 8gears https://8gears.container-registry.com/chartrepo/library
-helm push --username='robot$helmcli' --password="$PASSWD" . 8gears
-
-```
-
-[Plausible Analytics]: https://github.com/plausible/analytics
-[liwenhe1993/charts]: https://github.com/liwenhe1993/charts
