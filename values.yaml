@@ -54,6 +54,7 @@ geolocation: # MaxMind geolocation database#
   enabled: false # Enable/Disable the automated fetch of
   account_id: # Account/User ID from maxmind.com
   license_key: # My License Key from maxmind.com
+  # geoliteCountryDB: # Override default geoip db location (/geoip/GeoLite2-City.mmdb)
 
 # Google Search Integration
 # See: https://docs.plausible.io/self-hosting-configuration#google-search-integration

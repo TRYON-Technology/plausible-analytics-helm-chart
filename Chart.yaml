@@ -16,7 +16,7 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
-version: 0.3.2
+version: 0.3.3
 appVersion: v1.4.4
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
@@ -43,5 +43,5 @@ annotations:
   # https://blog.artifacthub.io/blog/changelogs/
   # valid supported kinds are added, changed, deprecated, removed, fixed and security
   artifacthub.io/changes: |
-    - kind: added
-      description: Update clickhouse image tag 21.3.2.5 to make plausible work
+    - kind: changed
+      description: Use Maxmind GeoLite2 City db instead of country db

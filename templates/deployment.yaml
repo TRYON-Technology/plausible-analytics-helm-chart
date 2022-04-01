@@ -182,7 +182,7 @@ spec:
             {{- end }}
             {{- if .Values.geolocation.enabled }}
             - name: GEOLITE2_COUNTRY_DB
-              value: "/geoip/GeoLite2-Country.mmdb"
+              value: "/geoip/GeoLite2-City.mmdb"
             {{ end }}
           ports:
             - name: http
@@ -208,12 +208,13 @@ spec:
 
         {{- if .Values.geolocation.enabled }}
         - name: geoipupdate
+          # https://hub.docker.com/r/maxmindinc/geoipupdate
           image: maxmindinc/geoipupdate
           env:
             - name: GEOIPUPDATE_FREQUENCY
               value: "168"
             - name: GEOIPUPDATE_EDITION_IDS
-              value: GeoLite2-Country
+              value: GeoLite2-City
             {{- if .Values.geolocation.account_id }}
             - name: GEOIPUPDATE_ACCOUNT_ID
               valueFrom:
