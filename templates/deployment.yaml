@@ -195,6 +195,12 @@ spec:
             - name: geoip
               mountPath: /geoip/
             {{- end }}
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /
