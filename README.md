@@ -12,7 +12,7 @@ helm repo update varac-plausible
 helm install [RELEASE_NAME] varac-plausible/plausible-analytics
 ```
 
-Source Code for this Helm Chart is located at: <https://0xacab.org/varac/plausible-analytics-helm-chart>
+Source Code for this Helm Chart is located at: <https://0xacab.org/varac-projects/plausible-analytics-helm-chart>
 
 ## Configuration
 
