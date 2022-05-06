@@ -145,7 +145,7 @@ spec:
                   key: GOOGLE_CLIENT_SECRET
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
-            {{- if .Values.postgresql.enabled }}
+            {{- if (or .Values.postgresql.enabled .Values.postgresql.url)  }}
             {{- if .Values.postgresql.url }}
             - name: DATABASE_URL
               valueFrom:
@@ -159,7 +159,7 @@ spec:
                 secretKeyRef:
                   key: SECRET_KEY_BASE
                   name: {{ include "plausible-analytics.fullname" . }}
-            {{- if .Values.clickhouse.enabled }}
+            {{- if (or .Values.clickhouse.enabled .Values.clickhouse.url) }}
             {{- if .Values.clickhouse.url }}
             - name: CLICKHOUSE_DATABASE_URL
               valueFrom:
@@ -184,6 +184,9 @@ spec:
             - name: GEOLITE2_COUNTRY_DB
               value: "/geoip/GeoLite2-City.mmdb"
             {{ end }}
+            {{- if .Values.extraEnv }}
+            {{-  .Values.extraEnv | toYaml | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 8000
@@ -274,7 +277,7 @@ spec:
                   key: ADMIN_USER_PWD
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
-            {{- if .Values.postgresql.enabled }}
+            {{- if (or .Values.postgresql.enabled .Values.postgresql.url) }}
             {{- if .Values.postgresql.url }}
             - name: DATABASE_URL
               valueFrom:
@@ -288,7 +291,7 @@ spec:
                 secretKeyRef:
                   key: SECRET_KEY_BASE
                   name: {{ include "plausible-analytics.fullname" . }}
-            {{- if .Values.clickhouse.enabled }}
+            {{- if (or .Values.clickhouse.enabled .Values.clickhouse.url) }}
             {{- if .Values.clickhouse.url }}
             - name: CLICKHOUSE_DATABASE_URL
               valueFrom:
@@ -422,6 +425,9 @@ spec:
                 secretKeyRef:
                   key: GEOLITE2_COUNTRY_DB
                   name: {{ include "plausible-analytics.fullname" . }}
+            {{- if .Values.extraEnv }}
+            {{-  .Values.extraEnv | toYaml | nindent 12 }}
+            {{- end }}
           {{- end }}
           volumeMounts:
             - name: app-tmp
