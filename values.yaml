@@ -118,6 +118,8 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # You can specfy an ingressClassName
+  # className:
   hosts:
     - host: chart-example.local
       paths: []

@@ -43,5 +43,11 @@ annotations:
   # https://blog.artifacthub.io/blog/changelogs/
   # valid supported kinds are added, changed, deprecated, removed, fixed and security
   artifacthub.io/changes: |
+    - kind: added
+      description: ingressClassName support added
+    - kind: added
+      description: Allow used of external clickhouse and postgresql
+    - kind: fixed
+      description: extraEnv: values was applied
     - kind: changed
       description: Changed source URL for chart
