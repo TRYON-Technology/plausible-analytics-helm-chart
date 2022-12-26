@@ -16,8 +16,8 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
-version: 0.4.0
-appVersion: v1.4.4
+version: 0.4.1
+appVersion: v1.5.1
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
   - name: clickhouse
