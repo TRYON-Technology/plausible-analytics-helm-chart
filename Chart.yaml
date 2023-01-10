@@ -16,7 +16,7 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
-version: 0.4.2
+version: 0.4.3
 appVersion: v1.5.1
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
@@ -26,7 +26,7 @@ dependencies:
     condition: clickhouse.enabled
   # https://artifacthub.io/packages/helm/bitnami/postgresql
   - name: postgresql
-    version: 12.1.7
+    version: 12.1.8
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 # https://artifacthub.io/docs/topics/annotations/helm/#supported-annotations
