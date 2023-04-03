@@ -16,7 +16,7 @@ maintainers:
     url: https://varac.net
   - name: Vadim Bauer
     url: https://8gears.com
-version: 0.4.16
+version: 0.4.17
 appVersion: v1.5.1
 dependencies:
   # https://artifacthub.io/packages/helm/sentry/clickhouse
@@ -44,4 +44,4 @@ annotations:
   # valid supported kinds are added, changed, deprecated, removed, fixed and security
   artifacthub.io/changes: |
     - kind: changed
-      description: (Breaking!) Upgrade Bitnami postgres chart to 12.1.6.
+      description: added option to override value for SECRET_KEY_BASE
