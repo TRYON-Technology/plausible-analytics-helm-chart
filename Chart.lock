@@ -1,9 +1,9 @@
 dependencies:
 - name: clickhouse
   repository: https://sentry-kubernetes.github.io/charts
-  version: 3.3.0
+  version: 3.4.0
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 12.6.6
-digest: sha256:a9e9d2a193cf243559f48b0a316e6c9ccc8447dd939ac682bebd0594bc99b3ef
-generated: "2023-07-16T02:08:49.408852079Z"
+digest: sha256:e17bf7cad076fca63c9302692fbfa2a5d4bd8b6b309e51aeb60741b1b7a81ce5
+generated: "2023-07-19T02:08:39.924431009Z"
